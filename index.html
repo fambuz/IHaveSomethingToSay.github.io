@@ -1,0 +1,659 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+  <meta name="theme-color" content="#ff4f87" />
+  <meta name="description" content="A little confession made just for you." />
+  <title>Something I Wanted to Tell You ♡</title>
+
+  <style>
+    :root{
+      --pink:#ff4f87;
+      --pink2:#ff8fb3;
+      --soft-pink:#ffe7f0;
+      --red:#e6395b;
+      --blue:#3267ff;
+      --deep-blue:#172d78;
+      --ink:#25213a;
+      --white:#fffafc;
+      --glass:rgba(255,255,255,.72);
+      --shadow:0 24px 70px rgba(47,35,82,.16);
+    }
+
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth}
+    body{
+      margin:0;
+      min-height:100vh;
+      color:var(--ink);
+      font-family:Georgia,"Times New Roman",serif;
+      background:
+        radial-gradient(circle at 12% 8%, rgba(255,79,135,.20) 0 8%, transparent 26%),
+        radial-gradient(circle at 88% 16%, rgba(50,103,255,.16) 0 8%, transparent 27%),
+        linear-gradient(135deg,#fff8fb 0%,#ffeaf2 48%,#f2f5ff 100%);
+      overflow-x:hidden;
+    }
+
+    body:before{
+      content:"";
+      position:fixed;
+      inset:0;
+      pointer-events:none;
+      opacity:.35;
+      background-image:radial-gradient(rgba(23,45,120,.13) .7px,transparent .7px);
+      background-size:18px 18px;
+      z-index:-1;
+    }
+
+    button{font:inherit}
+    a{text-decoration:none;color:inherit}
+
+    .floating{
+      position:fixed;
+      inset:0;
+      overflow:hidden;
+      pointer-events:none;
+      z-index:0;
+    }
+    .bubble{
+      position:absolute;
+      width:18px;height:18px;
+      border-radius:50%;
+      opacity:.28;
+      animation:floatUp linear infinite;
+    }
+    .bubble:nth-child(1){left:8%;bottom:-30px;background:var(--pink);animation-duration:11s}
+    .bubble:nth-child(2){left:23%;bottom:-50px;background:var(--blue);animation-duration:14s;animation-delay:2s}
+    .bubble:nth-child(3){left:71%;bottom:-30px;background:var(--red);animation-duration:12s;animation-delay:1s}
+    .bubble:nth-child(4){left:88%;bottom:-60px;background:var(--pink2);animation-duration:15s;animation-delay:4s}
+    .bubble:nth-child(5){left:50%;bottom:-50px;background:var(--blue);animation-duration:13s;animation-delay:5s}
+
+    @keyframes floatUp{
+      from{transform:translateY(0) scale(.7);opacity:0}
+      15%{opacity:.28}
+      to{transform:translateY(-115vh) scale(1.3);opacity:0}
+    }
+
+    .wrap{
+      position:relative;
+      z-index:1;
+      width:min(1080px,92%);
+      margin:auto;
+    }
+
+    .hero{
+      min-height:100svh;
+      display:grid;
+      place-items:center;
+      padding:30px 0 70px;
+    }
+
+    .hero-card{
+      width:min(850px,100%);
+      padding:clamp(28px,6vw,64px);
+      text-align:center;
+      background:var(--glass);
+      border:1px solid rgba(255,255,255,.85);
+      border-radius:34px;
+      box-shadow:var(--shadow);
+      backdrop-filter:blur(18px);
+      -webkit-backdrop-filter:blur(18px);
+      position:relative;
+      overflow:hidden;
+    }
+
+    .hero-card:after{
+      content:"";
+      position:absolute;
+      width:230px;height:230px;
+      right:-100px;top:-100px;
+      border-radius:50%;
+      background:rgba(50,103,255,.10);
+    }
+
+    .eyebrow{
+      display:inline-block;
+      padding:8px 15px;
+      border-radius:999px;
+      background:#fff;
+      color:var(--red);
+      font:700 12px/1.2 Arial,sans-serif;
+      letter-spacing:.16em;
+      text-transform:uppercase;
+      box-shadow:0 8px 25px rgba(230,57,91,.10);
+    }
+
+    h1{
+      margin:24px 0 16px;
+      font-size:clamp(46px,9vw,92px);
+      line-height:.95;
+      letter-spacing:-.055em;
+      color:var(--deep-blue);
+    }
+
+    h1 span{
+      color:var(--pink);
+      display:inline-block;
+      transform:rotate(-2deg);
+    }
+
+    .lead{
+      max-width:640px;
+      margin:0 auto;
+      font-size:clamp(17px,2.5vw,21px);
+      line-height:1.7;
+      color:#514a63;
+    }
+
+    .open-btn,.next-btn{
+      border:0;
+      cursor:pointer;
+      margin-top:28px;
+      padding:15px 23px;
+      border-radius:999px;
+      color:white;
+      font-weight:700;
+      background:linear-gradient(100deg,var(--red),var(--pink),var(--blue));
+      box-shadow:0 14px 30px rgba(230,57,91,.22);
+      transition:.25s ease;
+      -webkit-tap-highlight-color:transparent;
+    }
+
+    .open-btn:hover,.next-btn:hover{
+      transform:translateY(-3px) scale(1.02);
+    }
+
+    .scroll{
+      display:block;
+      margin-top:26px;
+      font:12px Arial,sans-serif;
+      color:#7d7590;
+      letter-spacing:.12em;
+      text-transform:uppercase;
+    }
+
+    .section{
+      padding:80px 0;
+    }
+
+    .section-card{
+      background:rgba(255,255,255,.68);
+      border:1px solid rgba(255,255,255,.9);
+      border-radius:30px;
+      padding:clamp(24px,5vw,52px);
+      box-shadow:var(--shadow);
+      backdrop-filter:blur(15px);
+      -webkit-backdrop-filter:blur(15px);
+    }
+
+    .section-title{
+      margin:0 0 12px;
+      color:var(--deep-blue);
+      font-size:clamp(30px,6vw,50px);
+      letter-spacing:-.03em;
+    }
+
+    .section-intro{
+      margin:0 0 30px;
+      color:#61596e;
+      line-height:1.7;
+      font-size:17px;
+    }
+
+    .little-things{
+      display:grid;
+      grid-template-columns:repeat(3,1fr);
+      gap:15px;
+    }
+
+    .thing{
+      padding:22px 18px;
+      border-radius:22px;
+      background:#fff;
+      border:1px solid #f8dce7;
+      min-height:150px;
+      transition:.25s ease;
+    }
+    .thing:hover{transform:translateY(-5px)}
+    .thing .icon{font-size:27px}
+    .thing h3{margin:12px 0 7px;color:var(--red);font-size:20px}
+    .thing p{margin:0;color:#686171;line-height:1.55;font-size:14px}
+
+    /* Bouquet */
+    .bouquet-wrap{
+      display:grid;
+      grid-template-columns:.9fr 1.1fr;
+      gap:34px;
+      align-items:center;
+    }
+
+    .bouquet-stage{
+      min-height:470px;
+      display:grid;
+      place-items:center;
+      position:relative;
+      overflow:hidden;
+      border-radius:28px;
+      background:
+        radial-gradient(circle at 50% 35%, rgba(255,255,255,.92), transparent 43%),
+        linear-gradient(145deg,#fff1f6,#f0f4ff);
+    }
+
+    .bouquet{
+      width:min(360px,85%);
+      height:420px;
+      position:relative;
+      animation:sway 5s ease-in-out infinite;
+      transform-origin:50% 90%;
+    }
+
+    @keyframes sway{
+      0%,100%{transform:rotate(-1deg)}
+      50%{transform:rotate(1.5deg)}
+    }
+
+    .stem{
+      position:absolute;
+      width:7px;
+      height:230px;
+      background:linear-gradient(90deg,#2b9a61,#58bd7e);
+      border-radius:9px;
+      bottom:95px;
+      left:50%;
+      transform-origin:bottom;
+    }
+    .stem.s1{transform:rotate(-23deg)}
+    .stem.s2{transform:rotate(-11deg)}
+    .stem.s3{transform:rotate(0deg)}
+    .stem.s4{transform:rotate(12deg)}
+    .stem.s5{transform:rotate(25deg)}
+
+    .leaf{
+      position:absolute;
+      width:80px;height:35px;
+      background:#45ad70;
+      border-radius:100% 0 100% 0;
+      bottom:160px;
+      left:50%;
+      transform-origin:0 50%;
+    }
+    .leaf.l1{transform:rotate(24deg)}
+    .leaf.l2{transform:rotate(156deg)}
+    .leaf.l3{transform:rotate(8deg);bottom:210px}
+    .leaf.l4{transform:rotate(176deg);bottom:220px}
+
+    .tulip{
+      position:absolute;
+      width:70px;height:86px;
+      border-radius:45% 45% 42% 42%;
+      bottom:306px;
+      left:calc(50% - 35px);
+      background:linear-gradient(135deg,#ff77a2,#f02e68);
+      box-shadow:inset 9px 0 0 rgba(255,255,255,.12);
+      z-index:3;
+    }
+    .tulip:before,.tulip:after{
+      content:"";
+      position:absolute;
+      top:-13px;
+      width:38px;height:54px;
+      background:inherit;
+      border-radius:60% 60% 20% 20%;
+      z-index:-1;
+    }
+    .tulip:before{left:3px;transform:rotate(-18deg)}
+    .tulip:after{right:3px;transform:rotate(18deg)}
+    .tulip.t2{transform:scale(.85) rotate(-8deg);left:calc(50% - 100px);bottom:286px;background:linear-gradient(135deg,#ff92b7,#ff3d78)}
+    .tulip.t3{transform:scale(.92) rotate(7deg);left:calc(50% + 58px);bottom:292px;background:linear-gradient(135deg,#ff6d98,#dc245e)}
+    .tulip.t4{transform:scale(.72) rotate(-12deg);left:calc(50% - 155px);bottom:260px;background:linear-gradient(135deg,#ffabc8,#ff5f91)}
+    .tulip.t5{transform:scale(.72) rotate(12deg);left:calc(50% + 120px);bottom:260px;background:linear-gradient(135deg,#ffabc8,#ff5f91)}
+
+    .wrap-paper{
+      position:absolute;
+      bottom:45px;
+      left:50%;
+      width:235px;
+      height:150px;
+      transform:translateX(-50%) rotate(-3deg);
+      background:linear-gradient(160deg,#fbf8f1,#e9e1d5);
+      clip-path:polygon(8% 10%,92% 0,100% 92%,12% 100%);
+      box-shadow:0 18px 25px rgba(0,0,0,.14);
+      z-index:5;
+    }
+
+    .ribbon{
+      position:absolute;
+      bottom:46px;left:50%;
+      width:25px;height:148px;
+      transform:translateX(-50%);
+      background:linear-gradient(90deg,#ff416d,#ff7ca0);
+      z-index:6;
+      opacity:.9;
+    }
+
+    .bow{
+      position:absolute;
+      bottom:176px;left:50%;
+      width:30px;height:30px;
+      transform:translateX(-50%) rotate(45deg);
+      background:#ff4f87;
+      border-radius:8px 2px 8px 2px;
+      z-index:7;
+    }
+
+    .bouquet-copy h2{
+      margin:0 0 15px;
+      color:var(--red);
+      font-size:clamp(28px,5vw,43px);
+    }
+    .bouquet-copy p{
+      line-height:1.8;
+      color:#5d5667;
+      font-size:17px;
+    }
+
+    .letter{
+      position:relative;
+      background:#fffdf8;
+      border-radius:5px;
+      padding:clamp(26px,6vw,58px);
+      box-shadow:0 20px 55px rgba(50,40,60,.12);
+      transform:rotate(.25deg);
+    }
+    .letter:before{
+      content:"";
+      position:absolute;
+      inset:12px;
+      border:1px dashed rgba(230,57,91,.25);
+      pointer-events:none;
+    }
+    .letter p{
+      position:relative;
+      font-size:clamp(17px,2.3vw,20px);
+      line-height:2;
+      color:#4f4658;
+    }
+    .letter .hello{
+      color:var(--blue);
+      font-size:22px;
+    }
+    .signature{
+      text-align:right;
+      color:var(--pink);
+      font-size:21px;
+      margin-top:28px;
+    }
+
+    .final{
+      text-align:center;
+      padding:90px 0 120px;
+    }
+    .heart{
+      font-size:60px;
+      animation:pulse 1.6s ease-in-out infinite;
+      display:inline-block;
+    }
+    @keyframes pulse{50%{transform:scale(1.14)}}
+    .final h2{
+      margin:15px 0 12px;
+      font-size:clamp(34px,7vw,58px);
+      color:var(--deep-blue);
+    }
+    .final p{
+      max-width:610px;
+      margin:auto;
+      color:#655d6e;
+      line-height:1.7;
+      font-size:17px;
+    }
+
+    .hidden-reveal{
+      max-height:0;
+      overflow:hidden;
+      opacity:0;
+      transition:.8s ease;
+    }
+    .hidden-reveal.show{
+      max-height:500px;
+      opacity:1;
+    }
+
+    .tiny{
+      margin-top:30px;
+      color:#8a8291;
+      font:12px/1.6 Arial,sans-serif;
+    }
+
+    @media(max-width:760px){
+      .little-things{grid-template-columns:1fr 1fr}
+      .bouquet-wrap{grid-template-columns:1fr}
+      .bouquet-stage{min-height:420px}
+      .section{padding:55px 0}
+    }
+
+    @media(max-width:520px){
+      .hero{padding:18px 0 50px}
+      .hero-card{border-radius:25px;padding:30px 19px}
+      h1{font-size:54px}
+      .little-things{grid-template-columns:1fr}
+      .thing{min-height:auto}
+      .section-card{border-radius:23px;padding:22px 17px}
+      .bouquet-stage{min-height:390px}
+      .bouquet{transform:scale(.88)}
+      .letter{padding:25px 19px}
+      .letter:before{inset:8px}
+      .letter p{line-height:1.8}
+    }
+
+    @media(prefers-reduced-motion:reduce){
+      *,*:before,*:after{scroll-behavior:auto!important;animation:none!important;transition:none!important}
+    }
+  </style>
+</head>
+
+<body>
+  <div class="floating" aria-hidden="true">
+    <span class="bubble"></span><span class="bubble"></span><span class="bubble"></span>
+    <span class="bubble"></span><span class="bubble"></span>
+  </div>
+
+  <main class="wrap">
+    <section class="hero" id="home">
+      <div class="hero-card">
+        <div class="eyebrow">a little something for you ♡</div>
+        <h1>Hey, <span id="herName">You.</span></h1>
+        <p class="lead">
+          I could have sent this as a normal message… but somehow that felt a little too ordinary.
+          So I made you a tiny corner of the internet instead.
+        </p>
+        <button class="open-btn" onclick="openGift()">open it ♡</button>
+        <span class="scroll">there's something waiting below ↓</span>
+      </div>
+    </section>
+
+    <div id="gift" hidden>
+      <section class="section">
+        <div class="section-card">
+          <h2 class="section-title">A few things I like about you</h2>
+          <p class="section-intro">
+            Not a checklist. Not a reason you owe me anything. Just some little things
+            I've noticed and genuinely appreciate.
+          </p>
+
+          <div class="little-things">
+            <article class="thing">
+              <div class="icon">✨</div>
+              <h3>Your energy</h3>
+              <p>You have this energetic way of making ordinary moments feel a little more alive.</p>
+            </article>
+            <article class="thing">
+              <div class="icon">🎀</div>
+              <h3>Your vibe</h3>
+              <p>There's something very you about the way you carry yourself, and I really like that.</p>
+            </article>
+            <article class="thing">
+              <div class="icon">😂</div>
+              <h3>Your humour</h3>
+              <p>The little jokes, reactions, and random moments that somehow stick in my head.</p>
+            </article>
+            <article class="thing">
+              <div class="icon">🌷</div>
+              <h3>The little moments</h3>
+              <p>Sometimes the smallest interactions end up being the ones I remember most.</p>
+            </article>
+            <article class="thing">
+              <div class="icon">💗</div>
+              <h3>Your presence</h3>
+              <p>I'm genuinely glad our paths crossed and that I got to know you.</p>
+            </article>
+            <article class="thing">
+              <div class="icon">🔵</div>
+              <h3>Just you</h3>
+              <p>No perfect explanation. I just like being around you and getting to know you.</p>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section class="section" id="bouquet">
+        <div class="section-card bouquet-wrap">
+          <div class="bouquet-stage" aria-label="A digital bouquet of pink tulips">
+            <div class="bouquet">
+              <div class="stem s1"></div>
+              <div class="stem s2"></div>
+              <div class="stem s3"></div>
+              <div class="stem s4"></div>
+              <div class="stem s5"></div>
+
+              <div class="leaf l1"></div>
+              <div class="leaf l2"></div>
+              <div class="leaf l3"></div>
+              <div class="leaf l4"></div>
+
+              <div class="tulip t1"></div>
+              <div class="tulip t2"></div>
+              <div class="tulip t3"></div>
+              <div class="tulip t4"></div>
+              <div class="tulip t5"></div>
+
+              <div class="wrap-paper"></div>
+              <div class="ribbon"></div>
+              <div class="bow"></div>
+            </div>
+          </div>
+
+          <div class="bouquet-copy">
+            <h2>These are for you. 🌷</h2>
+            <p>
+              Since I can't exactly hand you a bouquet through a website, I figured
+              I'd make you one here instead.
+            </p>
+            <p>
+              I picked tulips because they feel bright, warm, and a little playful —
+              which reminded me of your energy.
+            </p>
+            <button class="next-btn" onclick="document.getElementById('letter').scrollIntoView({behavior:'smooth'})">
+              there's one more thing ↓
+            </button>
+          </div>
+        </div>
+      </section>
+
+      <section class="section" id="letter">
+        <div class="section-card">
+          <div class="letter">
+            <p class="hello">Dear you,</p>
+
+            <p>
+              Okay, so… here's the part where I stop hiding behind pretty colours,
+              flowers, and a suspiciously dramatic website.
+            </p>
+
+            <p>
+              I like you. More than just a little.
+              I've tried to keep it simple and not make a huge thing out of it,
+              but I wanted to be honest about how I feel.
+            </p>
+
+            <p>
+              I really enjoy talking to you, being around you, and getting to know
+              the person you are. Somewhere along the way, you became someone
+              pretty special to me.
+            </p>
+
+            <p>
+              I'm not telling you this because I expect you to give me an answer
+              right away, or because I want you to feel pressured into anything.
+              I just thought you deserved to know the truth from me.
+            </p>
+
+            <p>
+              Whatever you feel is okay. I respect you, your feelings, and your
+              own pace. If you don't feel the same, I won't hold that against you.
+            </p>
+
+            <p>
+              I just didn't want to look back someday and wish I had been brave
+              enough to say it.
+            </p>
+
+            <p>
+              So, this is me being brave for a minute:
+              <strong>I like you. A lot. ♡</strong>
+            </p>
+
+            <p class="signature">— from someone who wanted to tell you properly ♡</p>
+          </div>
+        </div>
+      </section>
+
+      <section class="final">
+        <div class="heart">💗</div>
+        <h2>That's my confession.</h2>
+        <p>
+          No dramatic ending. No pressure. Just a little website, a digital bouquet,
+          and something honest I wanted you to know.
+        </p>
+
+        <button class="next-btn" onclick="revealMessage()">one tiny secret</button>
+
+        <div class="hidden-reveal" id="secret">
+          <p class="tiny">
+            P.S. If you smiled even a little while looking through this,
+            then I'm counting that as a tiny win. 🌷
+          </p>
+        </div>
+      </section>
+    </div>
+  </main>
+
+  <script>
+    // ============================
+    // PERSONALIZE THESE TWO LINES
+    // ============================
+    const HER_NAME = "Her Name";
+    const YOUR_NAME = "Your Name";
+
+    document.getElementById("herName").textContent = HER_NAME;
+
+    function openGift(){
+      const gift = document.getElementById("gift");
+      gift.hidden = false;
+      setTimeout(() => {
+        document.getElementById("gift").scrollIntoView({behavior:"smooth", block:"start"});
+      }, 50);
+    }
+
+    function revealMessage(){
+      document.getElementById("secret").classList.add("show");
+    }
+
+    // Optional: replace the signature automatically.
+    const signature = document.querySelector(".signature");
+    if (YOUR_NAME.trim() && YOUR_NAME !== "Your Name") {
+      signature.textContent = "— " + YOUR_NAME + " ♡";
+    }
+  </script>
+</body>
+</html>
